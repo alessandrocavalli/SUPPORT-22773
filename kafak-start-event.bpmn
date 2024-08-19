@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.22.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.5.0" camunda:diagramRelationId="6dffeb0c-53b6-4b14-a0c5-6c8e7b2a3e57">
+  <bpmn:process id="PROVA-855-X-14-NOCK-14" name="PROVA-855-X-14-NOCK-14" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_12">
+      <bpmn:extensionElements>
+        <zeebe:properties>
+          <zeebe:property name="inbound.type" value="io.camunda:connector-kafka-inbound:1" />
+          <zeebe:property name="authenticationType" value="credentials" />
+          <zeebe:property name="serializationType" value="json" />
+          <zeebe:property name="topic.bootstrapServers" value="my-release-kafka:9092" />
+          <zeebe:property name="topic.topicName" value="mynewtopic" />
+          <zeebe:property name="groupId" value="group1" />
+          <zeebe:property name="additionalProperties" value="={&#10;    &#34;security.protocol&#34;: &#34;SASL_PLAINTEXT&#34;,&#10;    &#34;sasl.mechanism&#34;: &#34;PLAIN&#34;,&#10;    &#34;sasl.jaas.config&#34;: &#34;org.apache.kafka.common.security.scram.ScramLoginModule required username=\&#34;user1\&#34; password=\&#34;abcdef\&#34;;&#34;&#10;}" />
+          <zeebe:property name="autoOffsetReset" value="earliest" />
+          <zeebe:property name="consumeUnmatchedEvents" value="true" />
+          <zeebe:property name="correlationRequired" value="notRequired" />
+          <zeebe:property name="messageTtl" value="PT0S" />
+          <zeebe:property name="deduplicationModeManualFlag" value="false" />
+          <zeebe:property name="deduplicationMode" value="AUTO" />
+          <zeebe:property name="resultVariable" />
+          <zeebe:property name="resultExpression" value="={&#34;intero&#34;:value, &#34;raw&#34;: rawValue, &#34;riusltato&#34;:response, &#34;chiave&#34;:key, &#34;mio&#34;: value.valore}" />
+          <zeebe:property name="correlationKeyExpression" />
+        </zeebe:properties>
+      </bpmn:extensionElements>
+      <bpmn:outgoing>Flow_1j00pj0</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1iwmvqa" messageRef="Message_0ytinb0" />
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1j00pj0" sourceRef="StartEvent_12" targetRef="Activity_1ai78y0" />
+    <bpmn:userTask id="Activity_1ai78y0" name="User Task&#10;alex-topic">
+      <bpmn:incoming>Flow_1j00pj0</bpmn:incoming>
+      <bpmn:outgoing>Flow_0hwnpxa</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_1k0cv8c" name="end">
+      <bpmn:incoming>Flow_0hwnpxa</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0hwnpxa" sourceRef="Activity_1ai78y0" targetRef="Event_1k0cv8c" />
+  </bpmn:process>
+  <bpmn:message id="Message_0ytinb0" name="687e90fc-1e7c-4844-b58b-727d216aa54d">
+    <bpmn:extensionElements />
+  </bpmn:message>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="PROVA-855-X-14-NOCK-14">
+      <bpmndi:BPMNShape id="Event_1tgbt1b_di" bpmnElement="StartEvent_12">
+        <dc:Bounds x="152" y="100" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0rn7joz_di" bpmnElement="Activity_1ai78y0">
+        <dc:Bounds x="280" y="78" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1k0cv8c_di" bpmnElement="Event_1k0cv8c">
+        <dc:Bounds x="492" y="100" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="501" y="143" width="19" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1j00pj0_di" bpmnElement="Flow_1j00pj0">
+        <di:waypoint x="188" y="118" />
+        <di:waypoint x="280" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0hwnpxa_di" bpmnElement="Flow_0hwnpxa">
+        <di:waypoint x="380" y="118" />
+        <di:waypoint x="492" y="118" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
